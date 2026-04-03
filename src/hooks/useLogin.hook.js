@@ -21,15 +21,15 @@ export function useLogin() {
   return useMutation({
     mutationFn: loginUser,
     onSuccess: (response) => {
-      Cookies.set("token", response.data.accessToken, { expires: 1 });
+      Cookies.set("token", response.accessToken, { expires: 1 });
       Cookies.set(
         "user",
         JSON.stringify({
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          email: response.data.email,
+          firstName: response.firstName,
+          lastName: response.lastName,
+          email: response.email,
         }),
-        { expires: 1 }
+        { expires: 1 },
       );
     },
     onError: (error) => {

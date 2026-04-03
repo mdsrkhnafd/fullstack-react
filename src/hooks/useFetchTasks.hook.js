@@ -4,10 +4,8 @@ import Cookies from "js-cookie";
 const fetchTasks = async ({ queryKey }) => {
   const [_key, { limit = 5, page = 1, order = "asc" }] = queryKey;
   const token = Cookies.get("token");
-  const url = new URL(`${import.meta.env.VITE_API_URL}tasks`);
-  url.searchParams.append("limit", limit);
-  url.searchParams.append("page", page);
-  url.searchParams.append("order", order);
+  const baseUrl = import.meta.env.VITE_API_URL;
+  const url = `${baseUrl}tasks?limit=${limit}&page=${page}&order=${order}`;
   const response = await fetch(url, {
     method: "GET",
     headers: {
